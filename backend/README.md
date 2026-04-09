@@ -40,6 +40,16 @@ Express backend with JWT authentication and Supabase database.
    npm start
    ```
 
+## Testing
+
+Run the unit tests for the crypto service:
+
+```bash
+npm test              # Run all tests
+npm run test:watch   # Watch mode for development
+npm run test:coverage # See coverage report
+```
+
 ## API Endpoints
 
 ### Authentication
