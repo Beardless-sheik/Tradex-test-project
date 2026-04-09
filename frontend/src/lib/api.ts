@@ -80,4 +80,32 @@ export const api = {
     if (!response.ok) throw new Error('Failed to create discussion');
     return response.json();
   },
+
+  // Crypto Prices
+  async getCryptoPrices(symbols: string[]) {
+    const params = new URLSearchParams({ symbols: symbols.join(',') });
+    const response = await fetch(`${API_BASE_URL}/crypto/prices?${params}`);
+    if (!response.ok) throw new Error('Failed to fetch crypto prices');
+    const result = await response.json();
+    return result.data;
+  },
+
+  async getChartData(symbol: string, days: number = 30) {
+    const response = await fetch(`${API_BASE_URL}/crypto/chart/${symbol}?days=${days}`);
+    if (!response.ok) throw new Error(`Failed to fetch chart data for ${symbol}`);
+    const result = await response.json();
+    return {
+      symbol: result.symbol,
+      id: result.id,
+      data: result.data,
+      stats: result.stats,
+    };
+  },
+
+  async getSupportedCryptos() {
+    const response = await fetch(`${API_BASE_URL}/crypto/supported`);
+    if (!response.ok) throw new Error('Failed to fetch supported cryptocurrencies');
+    const result = await response.json();
+    return result.supported;
+  },
 };
