@@ -71,3 +71,27 @@ Headers: `Authorization: Bearer <token>`
 - `SUPABASE_URL` - Your Supabase project URL
 - `SUPABASE_ANON_KEY` - Your Supabase anon key
 - `NODE_ENV` - Environment (development/production)
+- `COINGECKO_API_BASE` - CoinGecko API base URL (default: `https://api.coingecko.com/api/v3`)
+
+## Crypto Price API
+
+The backend includes a crypto price proxy service that fetches live cryptocurrency prices from CoinGecko.
+
+### Endpoints
+
+**GET /api/crypto/prices**
+```
+Query: ?symbols=bitcoin,ethereum,dogecoin
+Response: Array of current prices with 24h change
+```
+
+**GET /api/crypto/chart/:symbol**
+```
+Query: ?days=30
+Response: Historical price data for the specified crypto
+```
+
+**GET /api/crypto/supported**
+```
+Response: List of supported cryptocurrencies
+```
