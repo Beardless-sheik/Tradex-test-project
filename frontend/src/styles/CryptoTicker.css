@@ -1,0 +1,196 @@
+/* Crypto Ticker Styles */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-wrapper {
+  width: 100%;
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+  border-bottom: 2px solid #0ea5e9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 50;
+}
+
+.ticker-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  z-index: 50;
+}
+
+.ticker-scroll {
+  display: flex;
+  gap: 3rem;
+  animation: scroll 80s linear infinite;
+  width: fit-content;
+  
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.ticker-price-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 200px;
+  padding: 1.5rem 1.25rem;
+  border-radius: 1rem;
+  border: 2px solid rgba(15, 23, 42, 0.8);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.4) 100%);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  
+  &:hover {
+    border-color: #0ea5e9;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%);
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.2);
+  }
+}
+
+.ticker-symbol {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #0ea5e9;
+  letter-spacing: 0.05em;
+}
+
+.ticker-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.ticker-change {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  
+  &.positive {
+    color: #10b981;
+    
+    .change-arrow {
+      animation: bounce-up 1.5s ease-in-out infinite;
+    }
+  }
+  
+  &.negative {
+    color: #ef4444;
+    
+    .change-arrow {
+      animation: bounce-down 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+.change-arrow {
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+@keyframes bounce-up {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes bounce-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+.ticker-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 1.125rem;
+}
+
+.ticker-error {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%);
+  border-bottom: 2px solid #ef4444;
+}
+
+.ticker-error-message {
+  color: #fca5a5;
+  font-size: 1.05rem;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ticker-container {
+    height: 160px;
+  }
+  
+  .ticker-price-item {
+    min-width: 160px;
+    padding: 1rem;
+  }
+  
+  .ticker-symbol {
+    font-size: 1.125rem;
+  }
+  
+  .ticker-price {
+    font-size: 1.5rem;
+  }
+  
+  .ticker-change {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ticker-container {
+    height: 140px;
+  }
+  
+  .ticker-price-item {
+    min-width: 130px;
+    padding: 0.875rem;
+    gap: 0.5rem;
+  }
+  
+  .ticker-symbol {
+    font-size: 1rem;
+  }
+  
+  .ticker-price {
+    font-size: 1.25rem;
+  }
+  
+  .ticker-change {
+    font-size: 0.8rem;
+  }
+}
